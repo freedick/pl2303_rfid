@@ -38,7 +38,6 @@ def readResponse(device):
     assert(checksum(data[:-1]) == data[-1])
     responseCode = ord(data[0]) * 256 + ord(data[1])
     return (responseCode, data[2:-1])
-)
 
 def doCommand(device, commandCode, data):
     sendCommand(device, commandCode, data)
