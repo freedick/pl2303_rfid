@@ -20,7 +20,8 @@ def createCommand(commandCode, data):
     length = len(data) + 3
     data = chr(commandCode/256) + chr(commandCode%256) + data
     data = data + checksum(data)
-    return chr(0xaa) + chr(0xdd) + chr(length/256) + chr(length%256) + data
+    return chr(0xaa) + chr(0xdd) + (chr(length/256) + chr(length%256) + data).replace(chr(0xaa), chr(0xaa)+chr(0x00))
+
 
 def hexprint(data):
     print " ".join([realhex(ord(x)) for x in data])
@@ -37,6 +38,7 @@ def readResponse(device):
     assert(checksum(data[:-1]) == data[-1])
     responseCode = ord(data[0]) * 256 + ord(data[1])
     return (responseCode, data[2:-1])
+)
 
 def doCommand(device, commandCode, data):
     sendCommand(device, commandCode, data)
