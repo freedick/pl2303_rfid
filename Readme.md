@@ -1,4 +1,5 @@
 #rfid reader serial pl2303
+
 Implementation of the protocol, generously described here:
 https://www.triades.net/13-geek/13-serial-protocol-for-a-chinese-rfid-125khz-reader-writer.html
 
